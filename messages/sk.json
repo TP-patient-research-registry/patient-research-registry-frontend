@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "siteName": "Register pacientov pre výskum",
+    "description": "Prepájame pacientov a dobrovoľníkov s klinickými výskumnými štúdiami na Slovensku."
+  },
+  "common": {
+    "skipToContent": "Preskočiť na hlavný obsah",
+    "todo": "Na dokončenie",
+    "language": "Jazyk",
+    "placeholderNotice": "Táto stránka je zatiaľ len zástupná."
+  },
+  "header": {
+    "primaryNav": "Hlavná navigácia",
+    "home": "Domov",
+    "studies": "Štúdie",
+    "login": "Prihlásiť sa",
+    "register": "Registrovať sa"
+  },
+  "footer": {
+    "rights": "Register pacientov pre výskum",
+    "tagline": "Register klinického výskumu na Slovensku"
+  },
+  "participantNav": {
+    "label": "Navigácia účastníka",
+    "dashboard": "Prehľad",
+    "profile": "Profil",
+    "consents": "Súhlasy",
+    "studies": "Hľadať štúdie",
+    "myStudies": "Moje štúdie",
+    "questionnaires": "Dotazníky",
+    "myData": "Moje údaje",
+    "settings": "Nastavenia"
+  },
+  "researcherNav": {
+    "label": "Navigácia výskumníka",
+    "dashboard": "Prehľad",
+    "studies": "Štúdie",
+    "newStudy": "Nová štúdia"
+  },
+  "validation": {
+    "required": "Toto pole je povinné.",
+    "email": "Zadajte platnú e-mailovú adresu.",
+    "passwordMin": "Heslo musí mať aspoň 8 znakov.",
+    "passwordMismatch": "Heslá sa nezhodujú."
+  },
+  "auth": {
+    "loginForm": {
+      "email": "E-mail",
+      "password": "Heslo",
+      "submit": "Prihlásiť sa",
+      "notImplemented": "Prihlásenie zatiaľ nie je implementované."
+    }
+  },
+  "pages": {
+    "landing": {
+      "title": "Register pacientov pre výskum",
+      "description": "Verejná úvodná stránka, ktorá predstavuje register pacientom, dobrovoľníkom a výskumným tímom.",
+      "todo": [
+        "Úvodná sekcia s hlavným posolstvom a výzvami na akciu",
+        "Ako to funguje pre účastníkov a pre výskumníkov",
+        "Odporúčané / nedávno zverejnené štúdie",
+        "Informácie o dôveryhodnosti a GDPR"
+      ]
+    },
+    "studies": {
+      "title": "Klinické štúdie",
+      "description": "Verejný zoznam štúdií, ktoré aktuálne hľadajú účastníkov.",
+      "todo": [
+        "Načítanie verejných štúdií so stránkovaním",
+        "Vyhľadávanie a filtre (diagnóza, lokalita, vek, stav)",
+        "Karty štúdií s odkazom na detail",
+        "Prázdne a chybové stavy"
+      ]
+    },
+    "studyDetail": {
+      "title": "Detail štúdie",
+      "description": "Verejné informácie o jednej štúdii a o tom, ako sa do nej zapojiť.",
+      "todo": [
+        "Načítanie štúdie podľa ID",
+        "Popis, kritériá vhodnosti, lokality a kontakty",
+        "Tlačidlo „Mám záujem“ (neprihláseného presmeruje na prihlásenie)",
+        "Ošetrenie 404 pre neexistujúce štúdie"
+      ]
+    },
+    "login": {
+      "title": "Prihlásenie",
+      "description": "Prihláste sa e-mailom a heslom.",
+      "todo": [
+        "Získať CSRF cookie a odoslať prihlasovacie údaje na session endpoint",
+        "Presmerovať na URL z ?next= alebo na prehľad podľa roly",
+        "Zobraziť chyby zo servera (nesprávne údaje, neoverený e-mail)",
+        "Odkaz na obnovenie hesla"
+      ]
+    },
+    "register": {
+      "title": "Registrácia",
+      "description": "Vytvorte si účet ako účastník alebo ako výskumník.",
+      "todo": [
+        "Registračný formulár (schéma RegisterValues)",
+        "Výber roly: účastník / výskumník",
+        "Súhlas s podmienkami a zásadami ochrany osobných údajov",
+        "Presmerovanie na oznam o overení e-mailu"
+      ]
+    },
+    "verifyEmail": {
+      "title": "Overenie e-mailu",
+      "description": "Potvrdenie e-mailovej adresy pomocou tokenu z overovacieho e-mailu.",
+      "todo": [
+        "Načítať token z URL a zavolať overovací endpoint",
+        "Stavy: úspech, expirovaný a neplatný token",
+        "Opätovné odoslanie overovacieho e-mailu"
+      ]
+    },
+    "forbidden": {
+      "title": "Prístup zamietnutý",
+      "description": "Váš účet nemá oprávnenie na zobrazenie tejto stránky.",
+      "todo": ["Odkaz na prehľad podľa skutočnej roly používateľa", "Možnosť odhlásiť sa / zmeniť účet"]
+    },
+    "notFound": {
+      "title": "Stránka sa nenašla",
+      "description": "Stránka, ktorú hľadáte, neexistuje.",
+      "todo": ["Odkaz späť na domovskú stránku"]
+    },
+    "participantDashboard": {
+      "title": "Prehľad",
+      "description": "Prehľad pre účastníkov: aktívne štúdie, čakajúce dotazníky a upozornenia.",
+      "todo": [
+        "Súhrnné karty (aktívne štúdie, čakajúce dotazníky)",
+        "Ukážka odporúčaných štúdií",
+        "Indikátor úplnosti profilu"
+      ]
+    },
+    "participantProfile": {
+      "title": "Profil",
+      "description": "Osobné a zdravotné údaje, podľa ktorých vám hľadáme vhodné štúdie.",
+      "todo": [
+        "Formulár profilu (schéma ProfileValues)",
+        "Diagnózy a lieky",
+        "Uloženie s optimistickou aktualizáciou a notifikáciou"
+      ]
+    },
+    "participantConsents": {
+      "title": "Súhlasy",
+      "description": "Správa súhlasov so spracúvaním údajov a s kontaktovaním výskumníkmi.",
+      "todo": [
+        "Zoznam súhlasov s verziou a dátumom udelenia",
+        "Udelenie / odvolanie súhlasu s potvrdzovacím dialógom",
+        "História súhlasov"
+      ]
+    },
+    "participantStudies": {
+      "title": "Hľadať štúdie",
+      "description": "Štúdie odporúčané podľa vášho profilu a fulltextové vyhľadávanie.",
+      "todo": [
+        "Záložka odporúčaných štúdií",
+        "Záložka vyhľadávania s filtrami",
+        "Akcia prejavenia záujmu / prihlásenia"
+      ]
+    },
+    "participantMyStudies": {
+      "title": "Moje štúdie",
+      "description": "Štúdie, do ktorých ste sa prihlásili alebo sa ich zúčastňujete.",
+      "todo": ["Tabuľka štúdií so stavom účasti", "Odstúpenie zo štúdie", "Odkaz na súvisiace dotazníky"]
+    },
+    "participantQuestionnaires": {
+      "title": "Dotazníky",
+      "description": "Dotazníky, ktoré vám priradili vaše štúdie.",
+      "todo": ["Zoznam čakajúcich a vyplnených dotazníkov", "Termíny a odznaky stavu"]
+    },
+    "participantQuestionnaireDetail": {
+      "title": "Dotazník",
+      "description": "Vyplnenie priradeného dotazníka.",
+      "todo": [
+        "Dynamické vykreslenie otázok podľa definície z API",
+        "Uloženie rozpracovaného dotazníka a odoslanie odpovedí",
+        "Zobrazenie odoslaných odpovedí len na čítanie"
+      ]
+    },
+    "participantMyData": {
+      "title": "Moje údaje",
+      "description": "Uplatnenie práv podľa GDPR: export všetkých vašich údajov alebo žiadosť o ich vymazanie.",
+      "todo": [
+        "Žiadosť o export údajov a stiahnutie po pripravení",
+        "Žiadosť o zrušenie účtu a vymazanie údajov s potvrdzovacím dialógom",
+        "Stav prebiehajúcich žiadostí"
+      ]
+    },
+    "participantSettings": {
+      "title": "Nastavenia",
+      "description": "Nastavenia účtu: e-mail, heslo, jazyk a upozornenia.",
+      "todo": ["Zmena hesla", "Nastavenia upozornení", "Preferovaný jazyk"]
+    },
+    "researcherDashboard": {
+      "title": "Prehľad výskumníka",
+      "description": "Prehľad vašich štúdií a priebehu náboru.",
+      "todo": [
+        "Súhrn štúdií (koncept, nábor, ukončené)",
+        "Nedávne prihlášky účastníkov",
+        "Rýchly odkaz na vytvorenie štúdie"
+      ]
+    },
+    "researcherStudies": {
+      "title": "Moje štúdie",
+      "description": "Štúdie, ktoré spravujete vy alebo vaša organizácia.",
+      "todo": [
+        "Tabuľka štúdií so stavom a počtom účastníkov",
+        "Filtre podľa stavu",
+        "Odkaz na vytvorenie novej štúdie"
+      ]
+    },
+    "researcherStudyNew": {
+      "title": "Nová štúdia",
+      "description": "Vytvorenie novej klinickej štúdie.",
+      "todo": [
+        "Formulár štúdie (schéma StudyValues)",
+        "Editor kritérií vhodnosti",
+        "Uložiť ako koncept / odoslať na zverejnenie"
+      ]
+    },
+    "researcherStudyDetail": {
+      "title": "Správa štúdie",
+      "description": "Úprava údajov štúdie a správa jej zverejnenia.",
+      "todo": [
+        "Formulár na úpravu štúdie",
+        "Zverejnenie / ukončenie náboru",
+        "Záložky pre dotazníky a účastníkov"
+      ]
+    },
+    "researcherStudyQuestionnaires": {
+      "title": "Dotazníky štúdie",
+      "description": "Vytváranie a správa dotazníkov pre túto štúdiu.",
+      "todo": [
+        "Zoznam dotazníkov",
+        "Editor dotazníka (otázky, typy, validácia)",
+        "Priradenie dotazníkov účastníkom"
+      ]
+    },
+    "researcherStudyParticipants": {
+      "title": "Účastníci štúdie",
+      "description": "Účastníci, ktorí sa do štúdie prihlásili alebo sa do nej zapojili.",
+      "todo": [
+        "Tabuľka účastníkov so stavom",
+        "Prijatie / zamietnutie prihlášok",
+        "Export pseudonymizovaných odpovedí"
+      ]
+    }
+  }
+}

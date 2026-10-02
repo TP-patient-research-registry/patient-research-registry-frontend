@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "siteName": "Patient Research Registry",
+    "description": "Connecting patients and volunteers with clinical research studies in Slovakia."
+  },
+  "common": {
+    "skipToContent": "Skip to main content",
+    "todo": "To do",
+    "language": "Language",
+    "placeholderNotice": "This page is a placeholder."
+  },
+  "header": {
+    "primaryNav": "Main navigation",
+    "home": "Home",
+    "studies": "Studies",
+    "login": "Log in",
+    "register": "Register"
+  },
+  "footer": {
+    "rights": "Patient Research Registry",
+    "tagline": "Clinical research registry for Slovakia"
+  },
+  "participantNav": {
+    "label": "Participant navigation",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "consents": "Consents",
+    "studies": "Find studies",
+    "myStudies": "My studies",
+    "questionnaires": "Questionnaires",
+    "myData": "My data",
+    "settings": "Settings"
+  },
+  "researcherNav": {
+    "label": "Researcher navigation",
+    "dashboard": "Dashboard",
+    "studies": "Studies",
+    "newStudy": "New study"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "passwordMin": "Password must be at least 8 characters long.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "auth": {
+    "loginForm": {
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "notImplemented": "Login is not implemented yet."
+    }
+  },
+  "pages": {
+    "landing": {
+      "title": "Patient Research Registry",
+      "description": "Public landing page introducing the registry to patients, volunteers and research teams.",
+      "todo": [
+        "Hero section with value proposition and calls to action",
+        "How it works for participants and for researchers",
+        "Featured / recently published studies",
+        "Trust & GDPR information"
+      ]
+    },
+    "studies": {
+      "title": "Clinical studies",
+      "description": "Public list of studies currently recruiting participants.",
+      "todo": [
+        "Fetch public studies with pagination",
+        "Search and filters (condition, location, age, status)",
+        "Study cards linking to detail pages",
+        "Empty and error states"
+      ]
+    },
+    "studyDetail": {
+      "title": "Study detail",
+      "description": "Public information about a single study and how to join it.",
+      "todo": [
+        "Fetch study by ID",
+        "Show description, eligibility criteria, locations and contacts",
+        "\"Express interest\" CTA (redirects to login for anonymous users)",
+        "Handle 404 for unknown studies"
+      ]
+    },
+    "login": {
+      "title": "Log in",
+      "description": "Sign in with your email and password.",
+      "todo": [
+        "Fetch CSRF cookie and POST credentials to the session login endpoint",
+        "Redirect to the ?next= URL or role dashboard",
+        "Show server errors (invalid credentials, unverified email)",
+        "Password reset link"
+      ]
+    },
+    "register": {
+      "title": "Register",
+      "description": "Create an account as a participant or as a researcher.",
+      "todo": [
+        "Registration form (RegisterValues schema)",
+        "Role selection: participant / researcher",
+        "Terms & privacy policy acceptance",
+        "Redirect to email verification notice"
+      ]
+    },
+    "verifyEmail": {
+      "title": "Verify email",
+      "description": "Confirms the user's email address using the token from the verification email.",
+      "todo": [
+        "Read the token from the URL and call the verification endpoint",
+        "Success, expired and invalid token states",
+        "Resend verification email"
+      ]
+    },
+    "forbidden": {
+      "title": "Access denied",
+      "description": "Your account does not have permission to view this page.",
+      "todo": ["Link to the dashboard for the user's actual role", "Log out / switch account option"]
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist.",
+      "todo": ["Link back to the home page"]
+    },
+    "participantDashboard": {
+      "title": "Dashboard",
+      "description": "Overview for participants: active studies, pending questionnaires and notifications.",
+      "todo": [
+        "Summary cards (active studies, pending questionnaires)",
+        "Recommended studies teaser",
+        "Profile completeness indicator"
+      ]
+    },
+    "participantProfile": {
+      "title": "Profile",
+      "description": "Personal and health information used to match you with suitable studies.",
+      "todo": [
+        "Profile form (ProfileValues schema)",
+        "Health conditions and medications",
+        "Save with optimistic update and toast"
+      ]
+    },
+    "participantConsents": {
+      "title": "Consents",
+      "description": "Manage your consents for data processing and for being contacted by researchers.",
+      "todo": [
+        "List consents with version and date granted",
+        "Grant / withdraw consent with confirmation dialog",
+        "Consent history"
+      ]
+    },
+    "participantStudies": {
+      "title": "Find studies",
+      "description": "Studies recommended for you based on your profile, plus full-text search.",
+      "todo": ["Recommended studies tab", "Search tab with filters", "Express interest / apply action"]
+    },
+    "participantMyStudies": {
+      "title": "My studies",
+      "description": "Studies you have applied to or are participating in.",
+      "todo": [
+        "Table of studies with participation status",
+        "Withdraw from a study",
+        "Link to related questionnaires"
+      ]
+    },
+    "participantQuestionnaires": {
+      "title": "Questionnaires",
+      "description": "Questionnaires assigned to you by your studies.",
+      "todo": ["List pending and completed questionnaires", "Due dates and status badges"]
+    },
+    "participantQuestionnaireDetail": {
+      "title": "Questionnaire",
+      "description": "Fill in a questionnaire assigned to you.",
+      "todo": [
+        "Render questions dynamically from the API definition",
+        "Save draft and submit answers",
+        "Read-only view of submitted answers"
+      ]
+    },
+    "participantMyData": {
+      "title": "My data",
+      "description": "Exercise your GDPR rights: export all your data or request its deletion.",
+      "todo": [
+        "Request data export and download when ready",
+        "Request account & data deletion with confirmation dialog",
+        "Show status of pending requests"
+      ]
+    },
+    "participantSettings": {
+      "title": "Settings",
+      "description": "Account settings: email, password, language and notifications.",
+      "todo": ["Change password", "Notification preferences", "Preferred language"]
+    },
+    "researcherDashboard": {
+      "title": "Researcher dashboard",
+      "description": "Overview of your studies and recruitment progress.",
+      "todo": [
+        "Studies summary (draft, recruiting, closed)",
+        "Recent participant applications",
+        "Quick link to create a study"
+      ]
+    },
+    "researcherStudies": {
+      "title": "My studies",
+      "description": "Studies managed by you or your organization.",
+      "todo": [
+        "Table of studies with status and participant counts",
+        "Filters by status",
+        "Link to create a new study"
+      ]
+    },
+    "researcherStudyNew": {
+      "title": "New study",
+      "description": "Create a new clinical study.",
+      "todo": [
+        "Study form (StudyValues schema)",
+        "Eligibility criteria builder",
+        "Save as draft / submit for publishing"
+      ]
+    },
+    "researcherStudyDetail": {
+      "title": "Study management",
+      "description": "Edit study details and manage its publication status.",
+      "todo": ["Edit study form", "Publish / close recruitment", "Tabs for questionnaires and participants"]
+    },
+    "researcherStudyQuestionnaires": {
+      "title": "Study questionnaires",
+      "description": "Create and manage questionnaires for this study.",
+      "todo": [
+        "List questionnaires",
+        "Questionnaire builder (questions, types, validation)",
+        "Assign questionnaires to participants"
+      ]
+    },
+    "researcherStudyParticipants": {
+      "title": "Study participants",
+      "description": "Participants who applied to or joined this study.",
+      "todo": [
+        "Participants table with status",
+        "Accept / reject applications",
+        "Export pseudonymised responses"
+      ]
+    }
+  }
+}
