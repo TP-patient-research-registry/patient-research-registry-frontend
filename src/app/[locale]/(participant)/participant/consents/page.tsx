@@ -1,13 +1,13 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, Page, pageMetadata } from "@/components/layout/page";
+import { ConsentManager } from "@/features/consent/components/consent-manager";
 
-export const generateMetadata = placeholderMetadata("participantConsents");
+export const generateMetadata = pageMetadata("participantConsents");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function Route({ params }: PageProps<"/[locale]/participant/consents">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="participantConsents" />;
+  return (
+    <Page pageKey="participantConsents" width="max-w-3xl">
+      <ConsentManager />
+    </Page>
+  );
 }

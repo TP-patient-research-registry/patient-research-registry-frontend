@@ -16,3 +16,18 @@ export function getRequiredRoles(pathname: string): readonly Role[] | null {
 export function isRole(value: unknown): value is Role {
   return typeof value === "string" && (ROLES as readonly string[]).includes(value);
 }
+
+/** Landing page after login for each role. */
+export function dashboardPath(role: Role): string {
+  return role === "participant" ? "/participant/dashboard" : "/researcher/dashboard";
+}
+
+/**
+ * Only follow same-site relative `?next=` targets (prevents open redirects).
+ * Returns the path without its locale prefix so the locale-aware router can re-add it.
+ */
+export function safeNextPath(next: string | null | undefined, locales: readonly string[]): string | null {
+  if (!next || !next.startsWith("/") || next.startsWith("//") || next.includes("\\")) return null;
+  const [, first, ...rest] = next.split("/");
+  return locales.includes(first) ? `/${rest.join("/")}` : next;
+}

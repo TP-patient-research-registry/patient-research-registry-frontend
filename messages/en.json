@@ -5,20 +5,29 @@
   },
   "common": {
     "skipToContent": "Skip to main content",
-    "todo": "To do",
     "language": "Language",
-    "placeholderNotice": "This page is a placeholder."
+    "loading": "Loading…",
+    "genericError": "Something went wrong. Please try again.",
+    "retry": "Try again",
+    "cancel": "Cancel"
   },
   "header": {
     "primaryNav": "Main navigation",
     "home": "Home",
     "studies": "Studies",
     "login": "Log in",
-    "register": "Register"
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "roles": {
+      "participant": "Participant",
+      "researcher": "Researcher",
+      "organization": "Organization"
+    }
   },
   "footer": {
     "rights": "Patient Research Registry",
-    "tagline": "Clinical research registry for Slovakia"
+    "tagline": "Clinical research registry for Slovakia · Privacy by design"
   },
   "participantNav": {
     "label": "Participant navigation",
@@ -35,210 +44,713 @@
     "label": "Researcher navigation",
     "dashboard": "Dashboard",
     "studies": "Studies",
-    "newStudy": "New study"
+    "newStudy": "New study",
+    "settings": "Settings"
   },
   "validation": {
     "required": "This field is required.",
     "email": "Enter a valid email address.",
-    "passwordMin": "Password must be at least 8 characters long.",
-    "passwordMismatch": "Passwords do not match."
+    "passwordMin": "Password must be at least 10 characters long.",
+    "passwordMismatch": "Passwords do not match.",
+    "totpCode": "Enter the 6-digit code.",
+    "acceptTerms": "You must agree to continue.",
+    "age": "Enter an age between 0 and 120.",
+    "ageRange": "Maximum age must be greater than or equal to minimum age.",
+    "icd10": "Use ICD-10 codes such as E11 or J45.9, separated by commas.",
+    "tooLong": "This text is too long.",
+    "birthYear": "Enter a valid year of birth (e.g. 1985)."
   },
   "auth": {
     "loginForm": {
       "email": "Email",
       "password": "Password",
       "submit": "Log in",
-      "notImplemented": "Login is not implemented yet."
+      "error": "Login failed. Please try again.",
+      "verifyEmailPending": "Your email address is not verified yet. We have sent you a new verification link — please check your inbox.",
+      "totpCode": "Authentication code",
+      "totpHelp": "Enter the 6-digit code from your authenticator app.",
+      "verify": "Verify",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "register": "Register"
+    },
+    "registerForm": {
+      "error": "Registration failed. Please try again.",
+      "checkEmailTitle": "Check your inbox",
+      "checkEmail": "We have sent a verification link to {email}. Open it to activate your account.",
+      "role": "I want to join as",
+      "roles": {
+        "participant": {
+          "label": "Participant",
+          "description": "Patient or healthy volunteer who wants to take part in research."
+        },
+        "researcher": {
+          "label": "Researcher",
+          "description": "Recruit participants and run studies. Accounts are verified by an administrator."
+        }
+      },
+      "email": "Email",
+      "password": "Password",
+      "passwordHelp": "At least 10 characters.",
+      "passwordConfirm": "Confirm password",
+      "acceptTerms": "I agree to the terms of use and the processing of my personal data as described in the privacy policy.",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "login": "Log in"
+    },
+    "verifyEmail": {
+      "invalid": "This verification link is invalid or has expired.",
+      "toLogin": "Go to login",
+      "success": "Your email address has been verified.",
+      "verifying": "Verifying your email address…"
+    },
+    "password": {
+      "error": "Something went wrong. Please try again.",
+      "resetSent": "If an account with this email exists, we have sent a link to reset the password.",
+      "email": "Email",
+      "sendLink": "Send reset link",
+      "invalidLink": "This password reset link is invalid.",
+      "resetDone": "Your password has been changed. You can now log in.",
+      "toLogin": "Log in",
+      "newPassword": "New password",
+      "passwordConfirm": "Confirm new password",
+      "setPassword": "Set new password",
+      "changed": "Password changed.",
+      "currentPassword": "Current password",
+      "change": "Change password"
+    }
+  },
+  "enums": {
+    "region": {
+      "BA": "Bratislava",
+      "TT": "Trnava",
+      "TN": "Trenčín",
+      "NR": "Nitra",
+      "ZA": "Žilina",
+      "BB": "Banská Bystrica",
+      "PO": "Prešov",
+      "KE": "Košice"
+    },
+    "sex": {
+      "female": "Female",
+      "male": "Male",
+      "other": "Other"
+    },
+    "criteriaSex": {
+      "any": "Any",
+      "female": "Women",
+      "male": "Men"
+    },
+    "studyStatus": {
+      "draft": "Draft",
+      "published": "Recruiting",
+      "closed": "Closed"
+    },
+    "enrollmentStatus": {
+      "applied": "Applied",
+      "enrolled": "Enrolled",
+      "withdrawn": "Withdrawn",
+      "completed": "Completed"
+    },
+    "consentKind": {
+      "terms": "Terms of use",
+      "health_data_processing": "Processing of health data",
+      "study_matching_contact": "Contact about matching studies"
+    },
+    "deletionStatus": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    }
+  },
+  "studies": {
+    "publishedOn": "Published {date}",
+    "search": "Search studies",
+    "searchPlaceholder": "Condition, keyword…",
+    "searchSubmit": "Search",
+    "noResults": "No studies match your search.",
+    "empty": "No studies are recruiting right now.",
+    "count": "{count, plural, one {# study} other {# studies}}",
+    "pagination": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {total}",
+    "notFound": "Study not found",
+    "backToList": "Back to studies",
+    "about": "About the study",
+    "results": "Results",
+    "criteria": {
+      "title": "Who can take part",
+      "none": "Open to everyone.",
+      "ageRange": "Age {min}–{max}",
+      "ageMin": "Age {min}+",
+      "ageMax": "Age up to {max}",
+      "sex": "{sex} only",
+      "regions": "Region: {regions}",
+      "diagnoses": "Diagnosis: {codes}"
+    },
+    "apply": {
+      "title": "Join this study",
+      "privacy": "The research team will only see a pseudonym — never your name or email.",
+      "loginToApply": "Log in to apply",
+      "participantsOnly": "Only participant accounts can apply to studies.",
+      "alreadyApplied": "You have applied:",
+      "success": "You have applied to the study.",
+      "error": "Could not apply to the study.",
+      "apply": "Apply",
+      "consentRequired": "Joining a study requires your consent to processing of health data.",
+      "toConsents": "Manage consents"
+    },
+    "form": {
+      "details": "Study details",
+      "title": "Title",
+      "description": "Description",
+      "descriptionHelp": "Explain the purpose, what participants will do and how long it takes. Write for patients, not for experts.",
+      "results": "Results summary",
+      "resultsHelp": "Shown to participants and the public. Share what the study found.",
+      "criteria": "Eligibility criteria",
+      "criteriaHelp": "Used to recommend the study to matching participants. Leave empty for no restriction.",
+      "minAge": "Minimum age",
+      "maxAge": "Maximum age",
+      "sex": "Sex",
+      "regions": "Regions",
+      "regionsHelp": "No region selected = all of Slovakia.",
+      "diagnoses": "Diagnoses (ICD-10)",
+      "diagnosesHelp": "Comma-separated codes or prefixes, e.g. E11 matches E11.9."
+    }
+  },
+  "researcher": {
+    "dashboard": {
+      "verified": "Verified researcher",
+      "notVerified": "Verification pending",
+      "verifiedHelp": "Organization: {organization}. You can publish studies.",
+      "notVerifiedHelp": "You can prepare draft studies now. An administrator will verify your account before you can publish.",
+      "saved": "Saved.",
+      "saveError": "Could not save.",
+      "institution": "Institution",
+      "save": "Save",
+      "stats": "Statistics",
+      "participants": "Participants",
+      "recentStudies": "Recent studies",
+      "newStudy": "New study"
+    },
+    "studies": {
+      "filter": "Filter by status",
+      "all": "All",
+      "empty": "No studies yet.",
+      "createFirst": "Create your first study",
+      "title": "Title",
+      "status": "Status",
+      "participants": "Participants",
+      "updated": "Last change"
+    },
+    "study": {
+      "createDraft": "Create draft",
+      "created": "Draft created.",
+      "saveError": "Could not save the study.",
+      "tabs": {
+        "label": "Study sections",
+        "details": "Details",
+        "participants": "Participants",
+        "questionnaires": "Questionnaires"
+      },
+      "back": "All studies",
+      "enrollments": "{count, plural, =0 {No participants yet} one {# participant} other {# participants}}",
+      "actionError": "The action failed.",
+      "viewPublic": "Public page",
+      "publish": "Publish",
+      "publishTitle": "Publish the study?",
+      "publishConfirm": "The study becomes visible to everyone and matching participants who agreed to be contacted get an email (without any study details).",
+      "published": "The study is published.",
+      "delete": "Delete",
+      "deleteTitle": "Delete this draft?",
+      "deleteConfirm": "The draft and its questionnaires will be permanently deleted.",
+      "deleted": "Draft deleted.",
+      "close": "Close recruitment",
+      "closeTitle": "Close recruitment?",
+      "closeConfirm": "No new participants will be able to apply. This cannot be undone.",
+      "closed": "Recruitment closed.",
+      "verifyToPublish": "Your account must be verified by an administrator before you can publish.",
+      "save": "Save changes",
+      "saved": "Changes saved."
+    },
+    "participants": {
+      "empty": "No one has applied yet.",
+      "emptyHelp": "Publish the study so participants can find it.",
+      "updated": "Status updated.",
+      "updateError": "Could not change the status.",
+      "pseudonymNotice": "Participants are shown only by a per-study pseudonym. Their identity is never shared with the research team.",
+      "pseudonym": "Pseudonym",
+      "status": "Status",
+      "applied": "Applied",
+      "actions": "Actions",
+      "transition": {
+        "enrolled": "Accept",
+        "withdrawn": "Remove",
+        "completed": "Mark completed"
+      }
+    }
+  },
+  "questionnaires": {
+    "view": "View answers",
+    "fill": "Fill in",
+    "empty": "No questionnaires for you right now.",
+    "emptyHelp": "Questionnaires appear here once a research team accepts you into a study.",
+    "status": {
+      "submitted": "Submitted {date}",
+      "draft": "Draft saved",
+      "new": "New"
+    },
+    "form": {
+      "required": "This question is required.",
+      "choose": "Choose…",
+      "yes": "Yes",
+      "no": "No",
+      "submitted": "Thank you! Your answers have been submitted.",
+      "draftSaved": "Draft saved.",
+      "saveError": "Could not save your answers.",
+      "fillRequired": "Please answer all required questions.",
+      "back": "All questionnaires",
+      "readOnly": "Submitted on {date}. Answers can no longer be changed.",
+      "intro": "Questions marked * are required. You can save a draft and finish later. Your answers are stored encrypted.",
+      "noQuestions": "This questionnaire has no questions yet.",
+      "saveDraft": "Save draft",
+      "submit": "Submit",
+      "submitTitle": "Submit your answers?",
+      "submitConfirm": "After submitting you will not be able to change your answers."
+    },
+    "builder": {
+      "questionN": "Question {n}",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove question",
+      "questionTitle": "Question text",
+      "type": "Answer type",
+      "types": {
+        "text": "Short text",
+        "comment": "Long text",
+        "radiogroup": "Single choice",
+        "checkbox": "Multiple choice",
+        "dropdown": "Dropdown",
+        "boolean": "Yes / No",
+        "rating": "Rating scale"
+      },
+      "choices": "Options",
+      "choicesHelp": "One option per line, at least two.",
+      "rateMin": "From",
+      "rateMax": "To",
+      "inputType": "Format",
+      "inputTypes": {
+        "text": "Text",
+        "number": "Number",
+        "date": "Date",
+        "email": "Email"
+      },
+      "required": "Required",
+      "title": "Questionnaire title",
+      "active": "Active (visible to enrolled participants)",
+      "questions": "Questions",
+      "edit": "Edit",
+      "preview": "Preview",
+      "addQuestion": "Add question",
+      "saved": "Questionnaire saved.",
+      "saveError": "Could not save the questionnaire.",
+      "editTitle": "Edit questionnaire",
+      "newTitle": "New questionnaire",
+      "editWarning": "Participants may already have answered. Avoid removing questions or changing their meaning.",
+      "errors": {
+        "title": "Enter a questionnaire title.",
+        "noQuestions": "Add at least one question.",
+        "questionTitle": "Every question needs a text.",
+        "choices": "Choice questions need at least two options.",
+        "rating": "Rating scale: 'To' must be greater than 'From'."
+      },
+      "save": "Save questionnaire",
+      "cancel": "Cancel"
+    },
+    "responses": {
+      "empty": "No submitted answers yet.",
+      "participant": "Pseudonym",
+      "submitted": "Submitted",
+      "count": "{count, plural, one {# response} other {# responses}}",
+      "export": "Export CSV"
+    },
+    "manage": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "questionCount": "{count, plural, one {# question} other {# questions}}",
+      "hideResponses": "Hide responses",
+      "responses": "Responses",
+      "edit": "Edit",
+      "delete": "Delete questionnaire",
+      "deleteTitle": "Delete questionnaire?",
+      "deleteConfirm": "The questionnaire and all collected answers will be permanently deleted.",
+      "deleted": "Questionnaire deleted.",
+      "deleteError": "Could not delete the questionnaire.",
+      "auditNotice": "Viewing answers is recorded and visible to participants in their access log.",
+      "help": "Enrolled participants see active questionnaires in their account.",
+      "new": "New questionnaire",
+      "empty": "No questionnaires yet."
+    }
+  },
+  "profile": {
+    "saved": "Profile saved.",
+    "saveError": "Could not save the profile.",
+    "healthTitle": "Health profile",
+    "encryptedNotice": "These details are encrypted and used only to recommend suitable studies. Researchers never see them unless you join a study.",
+    "birthYear": "Year of birth",
+    "sex": "Sex",
+    "notSpecified": "Not specified",
+    "region": "Region",
+    "diagnoses": "Diagnoses (ICD-10)",
+    "diagnosesHelp": "Codes from your medical records, separated by commas, e.g. E11, I10. Ask your doctor if unsure.",
+    "save": "Save profile"
+  },
+  "consents": {
+    "granted": "Granted",
+    "newVersion": "New version available",
+    "notGranted": "Not granted",
+    "version": "Version {version}",
+    "grantedOn": "granted {date}",
+    "purpose": {
+      "terms": "Required to use the registry.",
+      "health_data_processing": "Required to join studies (GDPR art. 9). Lets the registry process your health profile and answers.",
+      "study_matching_contact": "Optional. We email you when a new study matches your profile — the email never contains health details."
+    },
+    "readText": "Read the full text: {title}",
+    "confirmRead": "I have read and understood the text and I agree.",
+    "grantedToast": "Consent granted.",
+    "error": "The action failed.",
+    "grant": "Give consent",
+    "withdraw": "Withdraw consent",
+    "withdrawTitle": "Withdraw consent?",
+    "withdrawConsequence": {
+      "terms": "Without accepting the terms you will not be able to use the registry.",
+      "health_data_processing": "You will not be able to join new studies. Data already used in studies stays with them as the law requires.",
+      "study_matching_contact": "You will no longer receive emails about matching studies."
+    },
+    "withdrawnToast": "Consent withdrawn.",
+    "history": {
+      "title": "Consent history",
+      "help": "Every grant and withdrawal is kept as proof. Records cannot be edited or deleted.",
+      "consent": "Consent",
+      "version": "Version",
+      "granted": "Granted",
+      "withdrawn": "Withdrawn"
+    }
+  },
+  "participant": {
+    "dashboard": {
+      "getStarted": "Get started",
+      "getStartedHelp": "Two steps so we can recommend studies that fit you.",
+      "profileComplete": "Profile {percent} % complete",
+      "completeProfile": "Complete profile",
+      "profileProgress": "Profile completeness",
+      "consentMissing": "To join studies, give consent to processing of health data.",
+      "toConsents": "Manage consents",
+      "activeStudies": "Active studies",
+      "viewMyStudies": "My studies",
+      "recommended": "Recommended for you",
+      "viewRecommended": "Find studies",
+      "questionnaires": "Questionnaires",
+      "recommendedForYou": "Recommended for you",
+      "seeAll": "See all"
+    },
+    "findStudies": {
+      "noRecommendations": "No matching studies right now.",
+      "noRecommendationsHelp": "A more complete <link>profile</link> helps us find studies for you.",
+      "recommendedHelp": "Studies whose eligibility criteria match your profile.",
+      "recommendedTab": "Recommended",
+      "searchTab": "All studies"
+    },
+    "myStudies": {
+      "empty": "You haven't applied to any study yet.",
+      "findStudies": "Find a study",
+      "study": "Study",
+      "yourStatus": "Your status",
+      "studyStatus": "Study",
+      "since": "Since",
+      "actions": "Actions",
+      "questionnaires": "Questionnaires",
+      "withdraw": "Withdraw",
+      "withdrawTitle": "Withdraw from the study?",
+      "withdrawConfirm": "You will leave “{title}”. You can withdraw at any time without giving a reason.",
+      "withdrawn": "You have withdrawn from the study.",
+      "error": "The action failed.",
+      "results": "Results of your studies"
+    },
+    "myData": {
+      "exportTitle": "Download my data",
+      "exportHelp": "Everything we store about you in a machine-readable JSON file (GDPR art. 15 and 20).",
+      "exportError": "The export failed.",
+      "export": "Download JSON",
+      "deleteTitle": "Delete my account",
+      "deleteHelp": "Request erasure of your account and data (GDPR art. 17). An administrator processes the request; data already used in studies is anonymised.",
+      "requestedOn": "requested {date}",
+      "pendingNotice": "Your request is being processed.",
+      "requestDeletion": "Request deletion",
+      "deleteConfirmTitle": "Request deletion of your account?",
+      "deleteConfirm": "Once processed, your account will be deleted and you will leave all studies.",
+      "requested": "Deletion requested.",
+      "error": "The action failed.",
+      "reason": "Reason (optional)",
+      "log": {
+        "title": "Who accessed my data",
+        "help": "Every change to your data and every time a research team views your answers.",
+        "empty": "No records yet.",
+        "when": "When",
+        "who": "Who",
+        "what": "What",
+        "data": "Data",
+        "actors": {
+          "you": "You",
+          "system": "System",
+          "researcher": "Research team",
+          "organization": "Organization",
+          "admin": "Administrator",
+          "participant": "Participant"
+        },
+        "actions": {
+          "create": "Created",
+          "update": "Changed",
+          "delete": "Deleted",
+          "access": "Viewed",
+          "other": "Other"
+        },
+        "objects": {
+          "user": "Account",
+          "participantprofile": "Health profile",
+          "consent": "Consent",
+          "enrollment": "Study participation",
+          "response": "Questionnaire answers"
+        },
+        "newer": "Newer",
+        "older": "Older"
+      }
+    },
+    "settings": {
+      "notifications": "Email notifications",
+      "notificationsHelp": "Emails only contain a link to log in — never health details or study titles.",
+      "saved": "Preferences saved.",
+      "saveError": "Could not save preferences.",
+      "preferences": {
+        "email_matching_studies": {
+          "label": "New matching studies",
+          "help": "Also requires the consent to be contacted about matching studies."
+        },
+        "email_study_updates": {
+          "label": "Updates from my studies",
+          "help": "New questionnaires, status changes and results."
+        }
+      },
+      "password": "Password",
+      "language": "Language",
+      "languages": {
+        "sk": "Slovenčina",
+        "en": "English"
+      }
+    }
+  },
+  "landing": {
+    "eyebrow": "Community-led · Privacy by design",
+    "title": "Clinical research in the hands of Slovak patients",
+    "lead": "Find studies that fit you, decide exactly what you share and see what came out of the research you took part in.",
+    "ctaJoin": "Join the registry",
+    "ctaBrowse": "Browse studies",
+    "highlightsLabel": "Why the registry",
+    "highlights": {
+      "control": {
+        "title": "You stay in control",
+        "text": "Grant and withdraw consent any time."
+      },
+      "transparency": {
+        "title": "Full transparency",
+        "text": "See who accessed your data and when."
+      },
+      "rare": {
+        "title": "Rare diseases",
+        "text": "Connects scattered patients with research."
+      },
+      "local": {
+        "title": "Data stays in Slovakia",
+        "text": "Self-hosted, GDPR compliant."
+      }
+    },
+    "howTitle": "How it works",
+    "participants": {
+      "title": "For patients and volunteers",
+      "steps": {
+        "register": {
+          "title": "Create an account",
+          "text": "Free, takes a minute."
+        },
+        "profile": {
+          "title": "Fill in your health profile",
+          "text": "Encrypted, only used for matching."
+        },
+        "match": {
+          "title": "Get matched",
+          "text": "Apply to studies that fit you — researchers only see a pseudonym."
+        },
+        "results": {
+          "title": "See the results",
+          "text": "Learn what your contribution helped discover."
+        }
+      }
+    },
+    "researchers": {
+      "title": "For researchers and patient organizations",
+      "steps": {
+        "create": {
+          "title": "Describe your study",
+          "text": "Set eligibility criteria in a simple form."
+        },
+        "recruit": {
+          "title": "Recruit faster",
+          "text": "Matching participants are notified automatically."
+        },
+        "collect": {
+          "title": "Collect data",
+          "text": "Build questionnaires, export pseudonymised answers."
+        },
+        "share": {
+          "title": "Share results",
+          "text": "Give back to the people who made it possible."
+        }
+      }
+    },
+    "featuredTitle": "Recruiting now",
+    "allStudies": "All studies",
+    "trustTitle": "Built on trust",
+    "trustLead": "Health data is special-category data under GDPR. The registry is designed so that you never have to take our word for it.",
+    "trust": {
+      "encryption": {
+        "title": "Encrypted at rest",
+        "text": "Health profile and answers are encrypted in the database."
+      },
+      "pseudonyms": {
+        "title": "Pseudonyms per study",
+        "text": "Researchers never see your name or email, and studies can't be linked."
+      },
+      "consent": {
+        "title": "Granular, versioned consent",
+        "text": "Every consent is recorded and can be withdrawn any time."
+      },
+      "hosting": {
+        "title": "Hosted in Slovakia",
+        "text": "Runs on our own server; data never leaves the country."
+      }
     }
   },
   "pages": {
     "landing": {
       "title": "Patient Research Registry",
-      "description": "Public landing page introducing the registry to patients, volunteers and research teams.",
-      "todo": [
-        "Hero section with value proposition and calls to action",
-        "How it works for participants and for researchers",
-        "Featured / recently published studies",
-        "Trust & GDPR information"
-      ]
+      "description": "Clinical research registry for Slovakia."
     },
     "studies": {
       "title": "Clinical studies",
-      "description": "Public list of studies currently recruiting participants.",
-      "todo": [
-        "Fetch public studies with pagination",
-        "Search and filters (condition, location, age, status)",
-        "Study cards linking to detail pages",
-        "Empty and error states"
-      ]
+      "description": "Studies currently recruiting participants."
     },
     "studyDetail": {
       "title": "Study detail",
-      "description": "Public information about a single study and how to join it.",
-      "todo": [
-        "Fetch study by ID",
-        "Show description, eligibility criteria, locations and contacts",
-        "\"Express interest\" CTA (redirects to login for anonymous users)",
-        "Handle 404 for unknown studies"
-      ]
+      "description": "Information about a study and how to join it."
     },
     "login": {
       "title": "Log in",
-      "description": "Sign in with your email and password.",
-      "todo": [
-        "Fetch CSRF cookie and POST credentials to the session login endpoint",
-        "Redirect to the ?next= URL or role dashboard",
-        "Show server errors (invalid credentials, unverified email)",
-        "Password reset link"
-      ]
+      "description": "Sign in with your email and password."
     },
     "register": {
-      "title": "Register",
-      "description": "Create an account as a participant or as a researcher.",
-      "todo": [
-        "Registration form (RegisterValues schema)",
-        "Role selection: participant / researcher",
-        "Terms & privacy policy acceptance",
-        "Redirect to email verification notice"
-      ]
+      "title": "Create an account",
+      "description": "Join as a participant or as a researcher."
     },
     "verifyEmail": {
       "title": "Verify email",
-      "description": "Confirms the user's email address using the token from the verification email.",
-      "todo": [
-        "Read the token from the URL and call the verification endpoint",
-        "Success, expired and invalid token states",
-        "Resend verification email"
-      ]
+      "description": "Confirming your email address."
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "description": "We will email you a link to set a new password."
+    },
+    "resetPassword": {
+      "title": "Set a new password",
+      "description": "Choose a new password for your account."
     },
     "forbidden": {
       "title": "Access denied",
       "description": "Your account does not have permission to view this page.",
-      "todo": ["Link to the dashboard for the user's actual role", "Log out / switch account option"]
+      "toDashboard": "Go to my dashboard",
+      "switchAccount": "Log out / switch account",
+      "login": "Log in"
     },
     "notFound": {
       "title": "Page not found",
       "description": "The page you are looking for does not exist.",
-      "todo": ["Link back to the home page"]
+      "home": "Back to home"
     },
     "participantDashboard": {
       "title": "Dashboard",
-      "description": "Overview for participants: active studies, pending questionnaires and notifications.",
-      "todo": [
-        "Summary cards (active studies, pending questionnaires)",
-        "Recommended studies teaser",
-        "Profile completeness indicator"
-      ]
+      "description": "Your studies, questionnaires and recommendations."
     },
     "participantProfile": {
       "title": "Profile",
-      "description": "Personal and health information used to match you with suitable studies.",
-      "todo": [
-        "Profile form (ProfileValues schema)",
-        "Health conditions and medications",
-        "Save with optimistic update and toast"
-      ]
+      "description": "Information used to match you with suitable studies."
     },
     "participantConsents": {
       "title": "Consents",
-      "description": "Manage your consents for data processing and for being contacted by researchers.",
-      "todo": [
-        "List consents with version and date granted",
-        "Grant / withdraw consent with confirmation dialog",
-        "Consent history"
-      ]
+      "description": "Decide how your data may be used. You can change your mind at any time."
     },
     "participantStudies": {
       "title": "Find studies",
-      "description": "Studies recommended for you based on your profile, plus full-text search.",
-      "todo": ["Recommended studies tab", "Search tab with filters", "Express interest / apply action"]
+      "description": "Studies recommended for you, plus full-text search."
     },
     "participantMyStudies": {
       "title": "My studies",
-      "description": "Studies you have applied to or are participating in.",
-      "todo": [
-        "Table of studies with participation status",
-        "Withdraw from a study",
-        "Link to related questionnaires"
-      ]
+      "description": "Studies you have applied to or take part in."
     },
     "participantQuestionnaires": {
       "title": "Questionnaires",
-      "description": "Questionnaires assigned to you by your studies.",
-      "todo": ["List pending and completed questionnaires", "Due dates and status badges"]
+      "description": "Questionnaires from the studies you take part in."
     },
     "participantQuestionnaireDetail": {
       "title": "Questionnaire",
-      "description": "Fill in a questionnaire assigned to you.",
-      "todo": [
-        "Render questions dynamically from the API definition",
-        "Save draft and submit answers",
-        "Read-only view of submitted answers"
-      ]
+      "description": "Fill in a questionnaire."
     },
     "participantMyData": {
       "title": "My data",
-      "description": "Exercise your GDPR rights: export all your data or request its deletion.",
-      "todo": [
-        "Request data export and download when ready",
-        "Request account & data deletion with confirmation dialog",
-        "Show status of pending requests"
-      ]
+      "description": "Your GDPR rights: export, erasure and a log of who accessed your data."
     },
     "participantSettings": {
       "title": "Settings",
-      "description": "Account settings: email, password, language and notifications.",
-      "todo": ["Change password", "Notification preferences", "Preferred language"]
+      "description": "Notifications, password and language."
     },
     "researcherDashboard": {
       "title": "Researcher dashboard",
-      "description": "Overview of your studies and recruitment progress.",
-      "todo": [
-        "Studies summary (draft, recruiting, closed)",
-        "Recent participant applications",
-        "Quick link to create a study"
-      ]
+      "description": "Your studies and recruitment at a glance."
     },
     "researcherStudies": {
       "title": "My studies",
-      "description": "Studies managed by you or your organization.",
-      "todo": [
-        "Table of studies with status and participant counts",
-        "Filters by status",
-        "Link to create a new study"
-      ]
+      "description": "Studies you manage."
     },
     "researcherStudyNew": {
       "title": "New study",
-      "description": "Create a new clinical study.",
-      "todo": [
-        "Study form (StudyValues schema)",
-        "Eligibility criteria builder",
-        "Save as draft / submit for publishing"
-      ]
+      "description": "Create a draft. You can publish it after reviewing."
     },
     "researcherStudyDetail": {
       "title": "Study management",
-      "description": "Edit study details and manage its publication status.",
-      "todo": ["Edit study form", "Publish / close recruitment", "Tabs for questionnaires and participants"]
+      "description": "Edit the study and manage its publication."
     },
     "researcherStudyQuestionnaires": {
       "title": "Study questionnaires",
-      "description": "Create and manage questionnaires for this study.",
-      "todo": [
-        "List questionnaires",
-        "Questionnaire builder (questions, types, validation)",
-        "Assign questionnaires to participants"
-      ]
+      "description": "Create questionnaires and view answers."
     },
     "researcherStudyParticipants": {
       "title": "Study participants",
-      "description": "Participants who applied to or joined this study.",
-      "todo": [
-        "Participants table with status",
-        "Accept / reject applications",
-        "Export pseudonymised responses"
-      ]
+      "description": "Pseudonymised participants and their status."
+    },
+    "researcherSettings": {
+      "title": "Settings",
+      "description": "Account settings."
     }
   }
 }

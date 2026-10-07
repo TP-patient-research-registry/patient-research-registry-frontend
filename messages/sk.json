@@ -1,24 +1,33 @@
 {
   "metadata": {
     "siteName": "Register pacientov pre výskum",
-    "description": "Prepájame pacientov a dobrovoľníkov s klinickými výskumnými štúdiami na Slovensku."
+    "description": "Spájame pacientov a dobrovoľníkov s klinickými štúdiami na Slovensku."
   },
   "common": {
     "skipToContent": "Preskočiť na hlavný obsah",
-    "todo": "Na dokončenie",
     "language": "Jazyk",
-    "placeholderNotice": "Táto stránka je zatiaľ len zástupná."
+    "loading": "Načítava sa…",
+    "genericError": "Niečo sa pokazilo. Skúste to znova.",
+    "retry": "Skúsiť znova",
+    "cancel": "Zrušiť"
   },
   "header": {
     "primaryNav": "Hlavná navigácia",
     "home": "Domov",
     "studies": "Štúdie",
     "login": "Prihlásiť sa",
-    "register": "Registrovať sa"
+    "register": "Registrovať sa",
+    "dashboard": "Prehľad",
+    "logout": "Odhlásiť sa",
+    "roles": {
+      "participant": "Účastník",
+      "researcher": "Výskumník",
+      "organization": "Organizácia"
+    }
   },
   "footer": {
     "rights": "Register pacientov pre výskum",
-    "tagline": "Register klinického výskumu na Slovensku"
+    "tagline": "Register klinického výskumu pre Slovensko · Súkromie už v návrhu"
   },
   "participantNav": {
     "label": "Navigácia účastníka",
@@ -35,214 +44,713 @@
     "label": "Navigácia výskumníka",
     "dashboard": "Prehľad",
     "studies": "Štúdie",
-    "newStudy": "Nová štúdia"
+    "newStudy": "Nová štúdia",
+    "settings": "Nastavenia"
   },
   "validation": {
     "required": "Toto pole je povinné.",
     "email": "Zadajte platnú e-mailovú adresu.",
-    "passwordMin": "Heslo musí mať aspoň 8 znakov.",
-    "passwordMismatch": "Heslá sa nezhodujú."
+    "passwordMin": "Heslo musí mať aspoň 10 znakov.",
+    "passwordMismatch": "Heslá sa nezhodujú.",
+    "totpCode": "Zadajte 6-miestny kód.",
+    "acceptTerms": "Pre pokračovanie musíte súhlasiť.",
+    "age": "Zadajte vek od 0 do 120.",
+    "ageRange": "Maximálny vek musí byť väčší alebo rovný minimálnemu.",
+    "icd10": "Použite kódy MKCH-10, napr. E11 alebo J45.9, oddelené čiarkou.",
+    "tooLong": "Text je príliš dlhý.",
+    "birthYear": "Zadajte platný rok narodenia (napr. 1985)."
   },
   "auth": {
     "loginForm": {
       "email": "E-mail",
       "password": "Heslo",
       "submit": "Prihlásiť sa",
-      "notImplemented": "Prihlásenie zatiaľ nie je implementované."
+      "error": "Prihlásenie zlyhalo. Skúste to znova.",
+      "verifyEmailPending": "Vaša e-mailová adresa ešte nie je overená. Poslali sme vám nový overovací odkaz — skontrolujte si schránku.",
+      "totpCode": "Overovací kód",
+      "totpHelp": "Zadajte 6-miestny kód z vašej overovacej aplikácie.",
+      "verify": "Overiť",
+      "forgotPassword": "Zabudli ste heslo?",
+      "noAccount": "Nemáte účet?",
+      "register": "Zaregistrujte sa"
+    },
+    "registerForm": {
+      "error": "Registrácia zlyhala. Skúste to znova.",
+      "checkEmailTitle": "Skontrolujte si e-mail",
+      "checkEmail": "Na adresu {email} sme poslali overovací odkaz. Otvorte ho a aktivujte si účet.",
+      "role": "Chcem sa zapojiť ako",
+      "roles": {
+        "participant": {
+          "label": "Účastník",
+          "description": "Pacient alebo zdravý dobrovoľník, ktorý sa chce zapojiť do výskumu."
+        },
+        "researcher": {
+          "label": "Výskumník",
+          "description": "Nábor účastníkov a vedenie štúdií. Účet overuje administrátor."
+        }
+      },
+      "email": "E-mail",
+      "password": "Heslo",
+      "passwordHelp": "Aspoň 10 znakov.",
+      "passwordConfirm": "Potvrdenie hesla",
+      "acceptTerms": "Súhlasím s podmienkami používania a so spracovaním osobných údajov podľa zásad ochrany súkromia.",
+      "submit": "Vytvoriť účet",
+      "haveAccount": "Už máte účet?",
+      "login": "Prihláste sa"
+    },
+    "verifyEmail": {
+      "invalid": "Tento overovací odkaz je neplatný alebo mu vypršala platnosť.",
+      "toLogin": "Prejsť na prihlásenie",
+      "success": "Vaša e-mailová adresa bola overená.",
+      "verifying": "Overujeme vašu e-mailovú adresu…"
+    },
+    "password": {
+      "error": "Niečo sa pokazilo. Skúste to znova.",
+      "resetSent": "Ak k tomuto e-mailu existuje účet, poslali sme naň odkaz na obnovenie hesla.",
+      "email": "E-mail",
+      "sendLink": "Poslať odkaz",
+      "invalidLink": "Tento odkaz na obnovenie hesla je neplatný.",
+      "resetDone": "Heslo bolo zmenené. Teraz sa môžete prihlásiť.",
+      "toLogin": "Prihlásiť sa",
+      "newPassword": "Nové heslo",
+      "passwordConfirm": "Potvrdenie nového hesla",
+      "setPassword": "Nastaviť nové heslo",
+      "changed": "Heslo bolo zmenené.",
+      "currentPassword": "Súčasné heslo",
+      "change": "Zmeniť heslo"
+    }
+  },
+  "enums": {
+    "region": {
+      "BA": "Bratislavský",
+      "TT": "Trnavský",
+      "TN": "Trenčiansky",
+      "NR": "Nitriansky",
+      "ZA": "Žilinský",
+      "BB": "Banskobystrický",
+      "PO": "Prešovský",
+      "KE": "Košický"
+    },
+    "sex": {
+      "female": "Žena",
+      "male": "Muž",
+      "other": "Iné"
+    },
+    "criteriaSex": {
+      "any": "Ktokoľvek",
+      "female": "Ženy",
+      "male": "Muži"
+    },
+    "studyStatus": {
+      "draft": "Koncept",
+      "published": "Nábor prebieha",
+      "closed": "Uzavretá"
+    },
+    "enrollmentStatus": {
+      "applied": "Prihlásený",
+      "enrolled": "Zaradený",
+      "withdrawn": "Odstúpil",
+      "completed": "Ukončený"
+    },
+    "consentKind": {
+      "terms": "Podmienky používania",
+      "health_data_processing": "Spracovanie údajov o zdraví",
+      "study_matching_contact": "Kontaktovanie o vhodných štúdiách"
+    },
+    "deletionStatus": {
+      "pending": "Čaká na spracovanie",
+      "processing": "Spracúva sa",
+      "completed": "Vybavená",
+      "rejected": "Zamietnutá"
+    }
+  },
+  "studies": {
+    "publishedOn": "Zverejnená {date}",
+    "search": "Hľadať štúdie",
+    "searchPlaceholder": "Ochorenie, kľúčové slovo…",
+    "searchSubmit": "Hľadať",
+    "noResults": "Vášmu hľadaniu nezodpovedá žiadna štúdia.",
+    "empty": "Momentálne neprebieha nábor do žiadnej štúdie.",
+    "count": "{count, plural, one {# štúdia} few {# štúdie} other {# štúdií}}",
+    "pagination": "Stránkovanie",
+    "previous": "Predchádzajúca",
+    "next": "Ďalšia",
+    "pageOf": "Strana {page} z {total}",
+    "notFound": "Štúdia sa nenašla",
+    "backToList": "Späť na štúdie",
+    "about": "O štúdii",
+    "results": "Výsledky",
+    "criteria": {
+      "title": "Kto sa môže zapojiť",
+      "none": "Otvorená pre všetkých.",
+      "ageRange": "Vek {min}–{max} rokov",
+      "ageMin": "Vek od {min} rokov",
+      "ageMax": "Vek do {max} rokov",
+      "sex": "Len {sex}",
+      "regions": "Kraj: {regions}",
+      "diagnoses": "Diagnóza: {codes}"
+    },
+    "apply": {
+      "title": "Zapojte sa do štúdie",
+      "privacy": "Výskumný tím uvidí iba pseudonym — nikdy nie vaše meno ani e-mail.",
+      "loginToApply": "Prihláste sa a prihláste sa do štúdie",
+      "participantsOnly": "Do štúdií sa môžu prihlásiť iba účty účastníkov.",
+      "alreadyApplied": "Ste prihlásený:",
+      "success": "Prihlásili ste sa do štúdie.",
+      "error": "Prihlásenie do štúdie zlyhalo.",
+      "apply": "Prihlásiť sa",
+      "consentRequired": "Na zapojenie do štúdie je potrebný súhlas so spracovaním údajov o zdraví.",
+      "toConsents": "Spravovať súhlasy"
+    },
+    "form": {
+      "details": "Údaje o štúdii",
+      "title": "Názov",
+      "description": "Popis",
+      "descriptionHelp": "Vysvetlite cieľ, čo budú účastníci robiť a ako dlho to potrvá. Píšte pre pacientov, nie pre odborníkov.",
+      "results": "Zhrnutie výsledkov",
+      "resultsHelp": "Zobrazí sa účastníkom aj verejnosti. Podeľte sa o zistenia štúdie.",
+      "criteria": "Kritériá zaradenia",
+      "criteriaHelp": "Slúžia na odporúčanie štúdie vhodným účastníkom. Prázdne pole znamená bez obmedzenia.",
+      "minAge": "Minimálny vek",
+      "maxAge": "Maximálny vek",
+      "sex": "Pohlavie",
+      "regions": "Kraje",
+      "regionsHelp": "Žiadny vybraný kraj = celé Slovensko.",
+      "diagnoses": "Diagnózy (MKCH-10)",
+      "diagnosesHelp": "Kódy alebo prefixy oddelené čiarkou, napr. E11 zahŕňa aj E11.9."
+    }
+  },
+  "researcher": {
+    "dashboard": {
+      "verified": "Overený výskumník",
+      "notVerified": "Čaká sa na overenie",
+      "verifiedHelp": "Organizácia: {organization}. Môžete zverejňovať štúdie.",
+      "notVerifiedHelp": "Koncepty štúdií si môžete pripraviť už teraz. Pred zverejnením váš účet overí administrátor.",
+      "saved": "Uložené.",
+      "saveError": "Nepodarilo sa uložiť.",
+      "institution": "Inštitúcia",
+      "save": "Uložiť",
+      "stats": "Štatistiky",
+      "participants": "Účastníci",
+      "recentStudies": "Posledné štúdie",
+      "newStudy": "Nová štúdia"
+    },
+    "studies": {
+      "filter": "Filtrovať podľa stavu",
+      "all": "Všetky",
+      "empty": "Zatiaľ žiadne štúdie.",
+      "createFirst": "Vytvorte svoju prvú štúdiu",
+      "title": "Názov",
+      "status": "Stav",
+      "participants": "Účastníci",
+      "updated": "Posledná zmena"
+    },
+    "study": {
+      "createDraft": "Vytvoriť koncept",
+      "created": "Koncept bol vytvorený.",
+      "saveError": "Štúdiu sa nepodarilo uložiť.",
+      "tabs": {
+        "label": "Sekcie štúdie",
+        "details": "Údaje",
+        "participants": "Účastníci",
+        "questionnaires": "Dotazníky"
+      },
+      "back": "Všetky štúdie",
+      "enrollments": "{count, plural, =0 {Zatiaľ bez účastníkov} one {# účastník} few {# účastníci} other {# účastníkov}}",
+      "actionError": "Akcia zlyhala.",
+      "viewPublic": "Verejná stránka",
+      "publish": "Zverejniť",
+      "publishTitle": "Zverejniť štúdiu?",
+      "publishConfirm": "Štúdia bude viditeľná pre všetkých a vhodní účastníci, ktorí súhlasili s kontaktovaním, dostanú e-mail (bez podrobností o štúdii).",
+      "published": "Štúdia bola zverejnená.",
+      "delete": "Vymazať",
+      "deleteTitle": "Vymazať tento koncept?",
+      "deleteConfirm": "Koncept aj jeho dotazníky budú natrvalo vymazané.",
+      "deleted": "Koncept bol vymazaný.",
+      "close": "Ukončiť nábor",
+      "closeTitle": "Ukončiť nábor?",
+      "closeConfirm": "Noví účastníci sa už nebudú môcť prihlásiť. Túto akciu nemožno vrátiť.",
+      "closed": "Nábor bol ukončený.",
+      "verifyToPublish": "Pred zverejnením musí váš účet overiť administrátor.",
+      "save": "Uložiť zmeny",
+      "saved": "Zmeny boli uložené."
+    },
+    "participants": {
+      "empty": "Zatiaľ sa nikto neprihlásil.",
+      "emptyHelp": "Zverejnite štúdiu, aby ju účastníci našli.",
+      "updated": "Stav bol zmenený.",
+      "updateError": "Stav sa nepodarilo zmeniť.",
+      "pseudonymNotice": "Účastníci sú zobrazení iba pod pseudonymom platným pre túto štúdiu. Ich identita sa výskumnému tímu nikdy nezdieľa.",
+      "pseudonym": "Pseudonym",
+      "status": "Stav",
+      "applied": "Prihlásený",
+      "actions": "Akcie",
+      "transition": {
+        "enrolled": "Prijať",
+        "withdrawn": "Vyradiť",
+        "completed": "Označiť ako ukončený"
+      }
+    }
+  },
+  "questionnaires": {
+    "view": "Zobraziť odpovede",
+    "fill": "Vyplniť",
+    "empty": "Momentálne pre vás nie sú žiadne dotazníky.",
+    "emptyHelp": "Dotazníky sa tu zobrazia, keď vás výskumný tím prijme do štúdie.",
+    "status": {
+      "submitted": "Odoslaný {date}",
+      "draft": "Rozpracovaný",
+      "new": "Nový"
+    },
+    "form": {
+      "required": "Táto otázka je povinná.",
+      "choose": "Vyberte…",
+      "yes": "Áno",
+      "no": "Nie",
+      "submitted": "Ďakujeme! Vaše odpovede boli odoslané.",
+      "draftSaved": "Rozpracované odpovede boli uložené.",
+      "saveError": "Odpovede sa nepodarilo uložiť.",
+      "fillRequired": "Odpovedzte, prosím, na všetky povinné otázky.",
+      "back": "Všetky dotazníky",
+      "readOnly": "Odoslané {date}. Odpovede už nie je možné meniť.",
+      "intro": "Otázky označené * sú povinné. Rozpracované odpovede si môžete uložiť a dokončiť neskôr. Odpovede sú uložené šifrovane.",
+      "noQuestions": "Tento dotazník zatiaľ nemá žiadne otázky.",
+      "saveDraft": "Uložiť rozpracované",
+      "submit": "Odoslať",
+      "submitTitle": "Odoslať odpovede?",
+      "submitConfirm": "Po odoslaní už odpovede nebude možné zmeniť."
+    },
+    "builder": {
+      "questionN": "Otázka {n}",
+      "moveUp": "Posunúť vyššie",
+      "moveDown": "Posunúť nižšie",
+      "remove": "Odstrániť otázku",
+      "questionTitle": "Text otázky",
+      "type": "Typ odpovede",
+      "types": {
+        "text": "Krátky text",
+        "comment": "Dlhý text",
+        "radiogroup": "Jedna možnosť",
+        "checkbox": "Viac možností",
+        "dropdown": "Rozbaľovací zoznam",
+        "boolean": "Áno / Nie",
+        "rating": "Hodnotiaca škála"
+      },
+      "choices": "Možnosti",
+      "choicesHelp": "Jedna možnosť na riadok, aspoň dve.",
+      "rateMin": "Od",
+      "rateMax": "Do",
+      "inputType": "Formát",
+      "inputTypes": {
+        "text": "Text",
+        "number": "Číslo",
+        "date": "Dátum",
+        "email": "E-mail"
+      },
+      "required": "Povinná",
+      "title": "Názov dotazníka",
+      "active": "Aktívny (viditeľný pre zaradených účastníkov)",
+      "questions": "Otázky",
+      "edit": "Upraviť",
+      "preview": "Náhľad",
+      "addQuestion": "Pridať otázku",
+      "saved": "Dotazník bol uložený.",
+      "saveError": "Dotazník sa nepodarilo uložiť.",
+      "editTitle": "Upraviť dotazník",
+      "newTitle": "Nový dotazník",
+      "editWarning": "Účastníci už mohli odpovedať. Neodstraňujte otázky ani nemeňte ich význam.",
+      "errors": {
+        "title": "Zadajte názov dotazníka.",
+        "noQuestions": "Pridajte aspoň jednu otázku.",
+        "questionTitle": "Každá otázka musí mať text.",
+        "choices": "Otázky s výberom potrebujú aspoň dve možnosti.",
+        "rating": "Hodnotiaca škála: hodnota „Do“ musí byť väčšia ako „Od“."
+      },
+      "save": "Uložiť dotazník",
+      "cancel": "Zrušiť"
+    },
+    "responses": {
+      "empty": "Zatiaľ žiadne odoslané odpovede.",
+      "participant": "Pseudonym",
+      "submitted": "Odoslané",
+      "count": "{count, plural, one {# odpoveď} few {# odpovede} other {# odpovedí}}",
+      "export": "Exportovať CSV"
+    },
+    "manage": {
+      "active": "Aktívny",
+      "inactive": "Neaktívny",
+      "questionCount": "{count, plural, one {# otázka} few {# otázky} other {# otázok}}",
+      "hideResponses": "Skryť odpovede",
+      "responses": "Odpovede",
+      "edit": "Upraviť",
+      "delete": "Vymazať dotazník",
+      "deleteTitle": "Vymazať dotazník?",
+      "deleteConfirm": "Dotazník aj všetky zozbierané odpovede budú natrvalo vymazané.",
+      "deleted": "Dotazník bol vymazaný.",
+      "deleteError": "Dotazník sa nepodarilo vymazať.",
+      "auditNotice": "Zobrazenie odpovedí sa zaznamenáva a účastníci ho vidia vo svojom prehľade prístupov.",
+      "help": "Zaradení účastníci vidia aktívne dotazníky vo svojom účte.",
+      "new": "Nový dotazník",
+      "empty": "Zatiaľ žiadne dotazníky."
+    }
+  },
+  "profile": {
+    "saved": "Profil bol uložený.",
+    "saveError": "Profil sa nepodarilo uložiť.",
+    "healthTitle": "Zdravotný profil",
+    "encryptedNotice": "Tieto údaje sú šifrované a slúžia len na odporúčanie vhodných štúdií. Výskumníci ich nevidia, kým sa do štúdie nezapojíte.",
+    "birthYear": "Rok narodenia",
+    "sex": "Pohlavie",
+    "notSpecified": "Neuvedené",
+    "region": "Kraj",
+    "diagnoses": "Diagnózy (MKCH-10)",
+    "diagnosesHelp": "Kódy zo zdravotnej dokumentácie oddelené čiarkou, napr. E11, I10. Ak si nie ste istí, opýtajte sa lekára.",
+    "save": "Uložiť profil"
+  },
+  "consents": {
+    "granted": "Udelený",
+    "newVersion": "Nová verzia",
+    "notGranted": "Neudelený",
+    "version": "Verzia {version}",
+    "grantedOn": "udelený {date}",
+    "purpose": {
+      "terms": "Potrebný na používanie registra.",
+      "health_data_processing": "Potrebný na zapojenie do štúdií (čl. 9 GDPR). Umožňuje spracúvať váš zdravotný profil a odpovede.",
+      "study_matching_contact": "Dobrovoľný. Keď sa objaví štúdia vhodná pre váš profil, pošleme vám e-mail — nikdy neobsahuje údaje o zdraví."
+    },
+    "readText": "Prečítať celé znenie: {title}",
+    "confirmRead": "Prečítal(a) som si text, porozumel(a) som mu a súhlasím.",
+    "grantedToast": "Súhlas bol udelený.",
+    "error": "Akcia zlyhala.",
+    "grant": "Udeliť súhlas",
+    "withdraw": "Odvolať súhlas",
+    "withdrawTitle": "Odvolať súhlas?",
+    "withdrawConsequence": {
+      "terms": "Bez súhlasu s podmienkami nebudete môcť register používať.",
+      "health_data_processing": "Nebudete sa môcť zapájať do nových štúdií. Údaje už použité v štúdiách v nich zostávajú, ako vyžaduje zákon.",
+      "study_matching_contact": "Už vám nebudeme posielať e-maily o vhodných štúdiách."
+    },
+    "withdrawnToast": "Súhlas bol odvolaný.",
+    "history": {
+      "title": "História súhlasov",
+      "help": "Každé udelenie aj odvolanie sa uchováva ako dôkaz. Záznamy nemožno upraviť ani vymazať.",
+      "consent": "Súhlas",
+      "version": "Verzia",
+      "granted": "Udelený",
+      "withdrawn": "Odvolaný"
+    }
+  },
+  "participant": {
+    "dashboard": {
+      "getStarted": "Začnite tu",
+      "getStartedHelp": "Dva kroky, aby sme vám mohli odporúčať vhodné štúdie.",
+      "profileComplete": "Profil vyplnený na {percent} %",
+      "completeProfile": "Doplniť profil",
+      "profileProgress": "Vyplnenie profilu",
+      "consentMissing": "Na zapojenie do štúdií udeľte súhlas so spracovaním údajov o zdraví.",
+      "toConsents": "Spravovať súhlasy",
+      "activeStudies": "Aktívne štúdie",
+      "viewMyStudies": "Moje štúdie",
+      "recommended": "Odporúčané pre vás",
+      "viewRecommended": "Hľadať štúdie",
+      "questionnaires": "Dotazníky",
+      "recommendedForYou": "Odporúčané pre vás",
+      "seeAll": "Zobraziť všetky"
+    },
+    "findStudies": {
+      "noRecommendations": "Momentálne žiadne vhodné štúdie.",
+      "noRecommendationsHelp": "Úplnejší <link>profil</link> nám pomôže nájsť pre vás štúdie.",
+      "recommendedHelp": "Štúdie, ktorých kritériá zodpovedajú vášmu profilu.",
+      "recommendedTab": "Odporúčané",
+      "searchTab": "Všetky štúdie"
+    },
+    "myStudies": {
+      "empty": "Zatiaľ ste sa neprihlásili do žiadnej štúdie.",
+      "findStudies": "Nájsť štúdiu",
+      "study": "Štúdia",
+      "yourStatus": "Váš stav",
+      "studyStatus": "Štúdia",
+      "since": "Od",
+      "actions": "Akcie",
+      "questionnaires": "Dotazníky",
+      "withdraw": "Odstúpiť",
+      "withdrawTitle": "Odstúpiť zo štúdie?",
+      "withdrawConfirm": "Odstúpite zo štúdie „{title}“. Odstúpiť môžete kedykoľvek bez udania dôvodu.",
+      "withdrawn": "Odstúpili ste zo štúdie.",
+      "error": "Akcia zlyhala.",
+      "results": "Výsledky vašich štúdií"
+    },
+    "myData": {
+      "exportTitle": "Stiahnuť moje údaje",
+      "exportHelp": "Všetko, čo o vás uchovávame, v strojovo čitateľnom súbore JSON (čl. 15 a 20 GDPR).",
+      "exportError": "Export zlyhal.",
+      "export": "Stiahnuť JSON",
+      "deleteTitle": "Vymazať môj účet",
+      "deleteHelp": "Požiadajte o vymazanie účtu a údajov (čl. 17 GDPR). Žiadosť spracuje administrátor; údaje použité v štúdiách sa anonymizujú.",
+      "requestedOn": "podaná {date}",
+      "pendingNotice": "Vaša žiadosť sa spracúva.",
+      "requestDeletion": "Požiadať o vymazanie",
+      "deleteConfirmTitle": "Požiadať o vymazanie účtu?",
+      "deleteConfirm": "Po spracovaní bude váš účet vymazaný a odstúpite zo všetkých štúdií.",
+      "requested": "Žiadosť o vymazanie bola podaná.",
+      "error": "Akcia zlyhala.",
+      "reason": "Dôvod (nepovinné)",
+      "log": {
+        "title": "Kto pristupoval k mojim údajom",
+        "help": "Každá zmena vašich údajov a každé zobrazenie vašich odpovedí výskumným tímom.",
+        "empty": "Zatiaľ žiadne záznamy.",
+        "when": "Kedy",
+        "who": "Kto",
+        "what": "Čo",
+        "data": "Údaje",
+        "actors": {
+          "you": "Vy",
+          "system": "Systém",
+          "researcher": "Výskumný tím",
+          "organization": "Organizácia",
+          "admin": "Administrátor",
+          "participant": "Účastník"
+        },
+        "actions": {
+          "create": "Vytvorenie",
+          "update": "Zmena",
+          "delete": "Vymazanie",
+          "access": "Zobrazenie",
+          "other": "Iné"
+        },
+        "objects": {
+          "user": "Účet",
+          "participantprofile": "Zdravotný profil",
+          "consent": "Súhlas",
+          "enrollment": "Účasť v štúdii",
+          "response": "Odpovede v dotazníku"
+        },
+        "newer": "Novšie",
+        "older": "Staršie"
+      }
+    },
+    "settings": {
+      "notifications": "E-mailové upozornenia",
+      "notificationsHelp": "E-maily obsahujú iba odkaz na prihlásenie — nikdy nie údaje o zdraví ani názvy štúdií.",
+      "saved": "Nastavenia boli uložené.",
+      "saveError": "Nastavenia sa nepodarilo uložiť.",
+      "preferences": {
+        "email_matching_studies": {
+          "label": "Nové vhodné štúdie",
+          "help": "Vyžaduje aj súhlas s kontaktovaním o vhodných štúdiách."
+        },
+        "email_study_updates": {
+          "label": "Novinky z mojich štúdií",
+          "help": "Nové dotazníky, zmeny stavu a výsledky."
+        }
+      },
+      "password": "Heslo",
+      "language": "Jazyk",
+      "languages": {
+        "sk": "Slovenčina",
+        "en": "English"
+      }
+    }
+  },
+  "landing": {
+    "eyebrow": "Komunitný · Súkromie už v návrhu",
+    "title": "Klinický výskum v rukách slovenských pacientov",
+    "lead": "Nájdite štúdie, ktoré sa k vám hodia, rozhodujte o tom, čo zdieľate, a zistite, aké výsledky priniesol výskum, do ktorého ste sa zapojili.",
+    "ctaJoin": "Zapojiť sa",
+    "ctaBrowse": "Prezrieť štúdie",
+    "highlightsLabel": "Prečo register",
+    "highlights": {
+      "control": {
+        "title": "Kontrolu máte vy",
+        "text": "Súhlas udelíte aj odvoláte kedykoľvek."
+      },
+      "transparency": {
+        "title": "Plná transparentnosť",
+        "text": "Vidíte, kto a kedy pristupoval k vašim údajom."
+      },
+      "rare": {
+        "title": "Zriedkavé ochorenia",
+        "text": "Spája roztrúsených pacientov s výskumom."
+      },
+      "local": {
+        "title": "Údaje zostávajú na Slovensku",
+        "text": "Vlastný server, v súlade s GDPR."
+      }
+    },
+    "howTitle": "Ako to funguje",
+    "participants": {
+      "title": "Pre pacientov a dobrovoľníkov",
+      "steps": {
+        "register": {
+          "title": "Vytvorte si účet",
+          "text": "Zadarmo, za minútu."
+        },
+        "profile": {
+          "title": "Vyplňte zdravotný profil",
+          "text": "Šifrovaný, slúži len na párovanie."
+        },
+        "match": {
+          "title": "Nájdeme vám štúdie",
+          "text": "Prihláste sa do vhodných štúdií — výskumníci vidia iba pseudonym."
+        },
+        "results": {
+          "title": "Uvidíte výsledky",
+          "text": "Zistíte, k čomu váš príspevok pomohol."
+        }
+      }
+    },
+    "researchers": {
+      "title": "Pre výskumníkov a pacientske organizácie",
+      "steps": {
+        "create": {
+          "title": "Popíšte štúdiu",
+          "text": "Kritériá zaradenia nastavíte v jednoduchom formulári."
+        },
+        "recruit": {
+          "title": "Rýchlejší nábor",
+          "text": "Vhodní účastníci dostanú upozornenie automaticky."
+        },
+        "collect": {
+          "title": "Zbierajte údaje",
+          "text": "Tvorte dotazníky, exportujte pseudonymizované odpovede."
+        },
+        "share": {
+          "title": "Zdieľajte výsledky",
+          "text": "Vráťte ich ľuďom, vďaka ktorým výskum vznikol."
+        }
+      }
+    },
+    "featuredTitle": "Práve prebieha nábor",
+    "allStudies": "Všetky štúdie",
+    "trustTitle": "Postavené na dôvere",
+    "trustLead": "Údaje o zdraví sú osobitnou kategóriou údajov podľa GDPR. Register je navrhnutý tak, aby ste nám nemuseli len veriť.",
+    "trust": {
+      "encryption": {
+        "title": "Šifrované úložisko",
+        "text": "Zdravotný profil aj odpovede sú v databáze šifrované."
+      },
+      "pseudonyms": {
+        "title": "Pseudonymy pre každú štúdiu",
+        "text": "Výskumníci nevidia vaše meno ani e-mail a štúdie nemožno navzájom prepojiť."
+      },
+      "consent": {
+        "title": "Podrobný, verzovaný súhlas",
+        "text": "Každý súhlas sa zaznamenáva a môžete ho kedykoľvek odvolať."
+      },
+      "hosting": {
+        "title": "Hosťované na Slovensku",
+        "text": "Beží na vlastnom serveri; údaje neopúšťajú krajinu."
+      }
     }
   },
   "pages": {
     "landing": {
       "title": "Register pacientov pre výskum",
-      "description": "Verejná úvodná stránka, ktorá predstavuje register pacientom, dobrovoľníkom a výskumným tímom.",
-      "todo": [
-        "Úvodná sekcia s hlavným posolstvom a výzvami na akciu",
-        "Ako to funguje pre účastníkov a pre výskumníkov",
-        "Odporúčané / nedávno zverejnené štúdie",
-        "Informácie o dôveryhodnosti a GDPR"
-      ]
+      "description": "Register klinického výskumu pre Slovensko."
     },
     "studies": {
       "title": "Klinické štúdie",
-      "description": "Verejný zoznam štúdií, ktoré aktuálne hľadajú účastníkov.",
-      "todo": [
-        "Načítanie verejných štúdií so stránkovaním",
-        "Vyhľadávanie a filtre (diagnóza, lokalita, vek, stav)",
-        "Karty štúdií s odkazom na detail",
-        "Prázdne a chybové stavy"
-      ]
+      "description": "Štúdie, do ktorých práve prebieha nábor účastníkov."
     },
     "studyDetail": {
       "title": "Detail štúdie",
-      "description": "Verejné informácie o jednej štúdii a o tom, ako sa do nej zapojiť.",
-      "todo": [
-        "Načítanie štúdie podľa ID",
-        "Popis, kritériá vhodnosti, lokality a kontakty",
-        "Tlačidlo „Mám záujem“ (neprihláseného presmeruje na prihlásenie)",
-        "Ošetrenie 404 pre neexistujúce štúdie"
-      ]
+      "description": "Informácie o štúdii a o tom, ako sa zapojiť."
     },
     "login": {
       "title": "Prihlásenie",
-      "description": "Prihláste sa e-mailom a heslom.",
-      "todo": [
-        "Získať CSRF cookie a odoslať prihlasovacie údaje na session endpoint",
-        "Presmerovať na URL z ?next= alebo na prehľad podľa roly",
-        "Zobraziť chyby zo servera (nesprávne údaje, neoverený e-mail)",
-        "Odkaz na obnovenie hesla"
-      ]
+      "description": "Prihláste sa e-mailom a heslom."
     },
     "register": {
       "title": "Registrácia",
-      "description": "Vytvorte si účet ako účastník alebo ako výskumník.",
-      "todo": [
-        "Registračný formulár (schéma RegisterValues)",
-        "Výber roly: účastník / výskumník",
-        "Súhlas s podmienkami a zásadami ochrany osobných údajov",
-        "Presmerovanie na oznam o overení e-mailu"
-      ]
+      "description": "Zapojte sa ako účastník alebo ako výskumník."
     },
     "verifyEmail": {
       "title": "Overenie e-mailu",
-      "description": "Potvrdenie e-mailovej adresy pomocou tokenu z overovacieho e-mailu.",
-      "todo": [
-        "Načítať token z URL a zavolať overovací endpoint",
-        "Stavy: úspech, expirovaný a neplatný token",
-        "Opätovné odoslanie overovacieho e-mailu"
-      ]
+      "description": "Potvrdenie vašej e-mailovej adresy."
+    },
+    "forgotPassword": {
+      "title": "Zabudnuté heslo",
+      "description": "Pošleme vám e-mail s odkazom na nastavenie nového hesla."
+    },
+    "resetPassword": {
+      "title": "Nové heslo",
+      "description": "Zvoľte si nové heslo k účtu."
     },
     "forbidden": {
       "title": "Prístup zamietnutý",
-      "description": "Váš účet nemá oprávnenie na zobrazenie tejto stránky.",
-      "todo": ["Odkaz na prehľad podľa skutočnej roly používateľa", "Možnosť odhlásiť sa / zmeniť účet"]
+      "description": "Váš účet nemá oprávnenie zobraziť túto stránku.",
+      "toDashboard": "Prejsť na môj prehľad",
+      "switchAccount": "Odhlásiť sa / zmeniť účet",
+      "login": "Prihlásiť sa"
     },
     "notFound": {
       "title": "Stránka sa nenašla",
       "description": "Stránka, ktorú hľadáte, neexistuje.",
-      "todo": ["Odkaz späť na domovskú stránku"]
+      "home": "Späť na úvod"
     },
     "participantDashboard": {
       "title": "Prehľad",
-      "description": "Prehľad pre účastníkov: aktívne štúdie, čakajúce dotazníky a upozornenia.",
-      "todo": [
-        "Súhrnné karty (aktívne štúdie, čakajúce dotazníky)",
-        "Ukážka odporúčaných štúdií",
-        "Indikátor úplnosti profilu"
-      ]
+      "description": "Vaše štúdie, dotazníky a odporúčania."
     },
     "participantProfile": {
       "title": "Profil",
-      "description": "Osobné a zdravotné údaje, podľa ktorých vám hľadáme vhodné štúdie.",
-      "todo": [
-        "Formulár profilu (schéma ProfileValues)",
-        "Diagnózy a lieky",
-        "Uloženie s optimistickou aktualizáciou a notifikáciou"
-      ]
+      "description": "Údaje, podľa ktorých vám hľadáme vhodné štúdie."
     },
     "participantConsents": {
       "title": "Súhlasy",
-      "description": "Správa súhlasov so spracúvaním údajov a s kontaktovaním výskumníkmi.",
-      "todo": [
-        "Zoznam súhlasov s verziou a dátumom udelenia",
-        "Udelenie / odvolanie súhlasu s potvrdzovacím dialógom",
-        "História súhlasov"
-      ]
+      "description": "Rozhodnite, ako sa môžu vaše údaje používať. Názor môžete kedykoľvek zmeniť."
     },
     "participantStudies": {
       "title": "Hľadať štúdie",
-      "description": "Štúdie odporúčané podľa vášho profilu a fulltextové vyhľadávanie.",
-      "todo": [
-        "Záložka odporúčaných štúdií",
-        "Záložka vyhľadávania s filtrami",
-        "Akcia prejavenia záujmu / prihlásenia"
-      ]
+      "description": "Štúdie odporúčané pre vás a fulltextové vyhľadávanie."
     },
     "participantMyStudies": {
       "title": "Moje štúdie",
-      "description": "Štúdie, do ktorých ste sa prihlásili alebo sa ich zúčastňujete.",
-      "todo": ["Tabuľka štúdií so stavom účasti", "Odstúpenie zo štúdie", "Odkaz na súvisiace dotazníky"]
+      "description": "Štúdie, do ktorých ste sa prihlásili alebo sa ich zúčastňujete."
     },
     "participantQuestionnaires": {
       "title": "Dotazníky",
-      "description": "Dotazníky, ktoré vám priradili vaše štúdie.",
-      "todo": ["Zoznam čakajúcich a vyplnených dotazníkov", "Termíny a odznaky stavu"]
+      "description": "Dotazníky zo štúdií, ktorých sa zúčastňujete."
     },
     "participantQuestionnaireDetail": {
       "title": "Dotazník",
-      "description": "Vyplnenie priradeného dotazníka.",
-      "todo": [
-        "Dynamické vykreslenie otázok podľa definície z API",
-        "Uloženie rozpracovaného dotazníka a odoslanie odpovedí",
-        "Zobrazenie odoslaných odpovedí len na čítanie"
-      ]
+      "description": "Vyplnenie dotazníka."
     },
     "participantMyData": {
       "title": "Moje údaje",
-      "description": "Uplatnenie práv podľa GDPR: export všetkých vašich údajov alebo žiadosť o ich vymazanie.",
-      "todo": [
-        "Žiadosť o export údajov a stiahnutie po pripravení",
-        "Žiadosť o zrušenie účtu a vymazanie údajov s potvrdzovacím dialógom",
-        "Stav prebiehajúcich žiadostí"
-      ]
+      "description": "Vaše práva podľa GDPR: export, vymazanie a prehľad prístupov k údajom."
     },
     "participantSettings": {
       "title": "Nastavenia",
-      "description": "Nastavenia účtu: e-mail, heslo, jazyk a upozornenia.",
-      "todo": ["Zmena hesla", "Nastavenia upozornení", "Preferovaný jazyk"]
+      "description": "Upozornenia, heslo a jazyk."
     },
     "researcherDashboard": {
       "title": "Prehľad výskumníka",
-      "description": "Prehľad vašich štúdií a priebehu náboru.",
-      "todo": [
-        "Súhrn štúdií (koncept, nábor, ukončené)",
-        "Nedávne prihlášky účastníkov",
-        "Rýchly odkaz na vytvorenie štúdie"
-      ]
+      "description": "Vaše štúdie a nábor na jednom mieste."
     },
     "researcherStudies": {
       "title": "Moje štúdie",
-      "description": "Štúdie, ktoré spravujete vy alebo vaša organizácia.",
-      "todo": [
-        "Tabuľka štúdií so stavom a počtom účastníkov",
-        "Filtre podľa stavu",
-        "Odkaz na vytvorenie novej štúdie"
-      ]
+      "description": "Štúdie, ktoré spravujete."
     },
     "researcherStudyNew": {
       "title": "Nová štúdia",
-      "description": "Vytvorenie novej klinickej štúdie.",
-      "todo": [
-        "Formulár štúdie (schéma StudyValues)",
-        "Editor kritérií vhodnosti",
-        "Uložiť ako koncept / odoslať na zverejnenie"
-      ]
+      "description": "Vytvorte koncept. Zverejniť ho môžete po kontrole."
     },
     "researcherStudyDetail": {
       "title": "Správa štúdie",
-      "description": "Úprava údajov štúdie a správa jej zverejnenia.",
-      "todo": [
-        "Formulár na úpravu štúdie",
-        "Zverejnenie / ukončenie náboru",
-        "Záložky pre dotazníky a účastníkov"
-      ]
+      "description": "Úprava štúdie a jej zverejnenia."
     },
     "researcherStudyQuestionnaires": {
       "title": "Dotazníky štúdie",
-      "description": "Vytváranie a správa dotazníkov pre túto štúdiu.",
-      "todo": [
-        "Zoznam dotazníkov",
-        "Editor dotazníka (otázky, typy, validácia)",
-        "Priradenie dotazníkov účastníkom"
-      ]
+      "description": "Tvorba dotazníkov a prehľad odpovedí."
     },
     "researcherStudyParticipants": {
       "title": "Účastníci štúdie",
-      "description": "Účastníci, ktorí sa do štúdie prihlásili alebo sa do nej zapojili.",
-      "todo": [
-        "Tabuľka účastníkov so stavom",
-        "Prijatie / zamietnutie prihlášok",
-        "Export pseudonymizovaných odpovedí"
-      ]
+      "description": "Pseudonymizovaní účastníci a ich stav."
+    },
+    "researcherSettings": {
+      "title": "Nastavenia",
+      "description": "Nastavenia účtu."
     }
   }
 }

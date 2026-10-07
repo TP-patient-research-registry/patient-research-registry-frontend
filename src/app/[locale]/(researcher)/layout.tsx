@@ -10,6 +10,7 @@ export default async function ResearcherLayout({ children }: LayoutProps<"/[loca
     { href: "/researcher/dashboard", label: t("dashboard") },
     { href: "/researcher/studies", label: t("studies") },
     { href: "/researcher/studies/new", label: t("newStudy") },
+    { href: "/researcher/settings", label: t("settings") },
   ];
 
   return (

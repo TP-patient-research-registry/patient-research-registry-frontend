@@ -1,13 +1,16 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, pageMetadata } from "@/components/layout/page";
+import { StudyQuestionnairesScreen } from "@/features/researcher/components/study-screens";
 
-export const generateMetadata = placeholderMetadata("researcherStudyQuestionnaires");
+export const generateMetadata = pageMetadata("researcherStudyQuestionnaires");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function Route({
+  params,
+}: PageProps<"/[locale]/researcher/studies/[id]/questionnaires">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="researcherStudyQuestionnaires" />;
+  const { id } = await params;
+  return (
+    <div className="mx-auto w-full max-w-5xl">
+      <StudyQuestionnairesScreen studyId={id} />
+    </div>
+  );
 }
