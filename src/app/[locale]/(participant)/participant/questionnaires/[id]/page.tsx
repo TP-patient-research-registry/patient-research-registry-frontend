@@ -1,13 +1,14 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, pageMetadata } from "@/components/layout/page";
+import { QuestionnaireFill } from "@/features/questionnaires/components/questionnaire-fill";
 
-export const generateMetadata = placeholderMetadata("participantQuestionnaireDetail");
+export const generateMetadata = pageMetadata("participantQuestionnaireDetail");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function Route({ params }: PageProps<"/[locale]/participant/questionnaires/[id]">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="participantQuestionnaireDetail" />;
+  const { id } = await params;
+  return (
+    <div className="mx-auto w-full max-w-5xl">
+      <QuestionnaireFill id={id} />
+    </div>
+  );
 }

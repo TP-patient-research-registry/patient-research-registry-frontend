@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-test("redirects / to the default Slovak locale", async ({ page }) => {
+test("redirects / to the browser's locale (Slovak)", async ({ browser }) => {
+  // next-intl detects the locale from Accept-Language; Playwright's Chrome defaults to en-US.
+  const page = await (await browser.newContext({ locale: "sk-SK" })).newPage();
   await page.goto("/");
   await expect(page).toHaveURL(/\/sk$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "sk");

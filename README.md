@@ -3,8 +3,9 @@
 Web app connecting patients and volunteers with clinical research studies in Slovakia.
 This repository contains the frontend only; the backend is a separate Django REST API.
 
-> Status: scaffold. Routes, layouts, config and tooling are in place; pages are placeholders
-> listing what each one should do (see the TODO list rendered on every page).
+> Status: MVP implemented — registration & login (incl. TOTP, email verification, password reset),
+> participant profile / e-consent / study search & recommendations / questionnaires / GDPR tools,
+> researcher study management / pseudonymised participants / questionnaire builder & CSV export.
 
 ## Stack
 
@@ -76,7 +77,14 @@ placeholder exists so the project compiles without a running backend). `apiClien
 | `pnpm typecheck` | Generate route types + `tsc --noEmit`                |
 | `pnpm test`      | Vitest unit/component tests (`test:watch`)           |
 | `pnpm test:e2e`  | Playwright (run `pnpm exec playwright install` once) |
-| `pnpm gen:api`   | Regenerate API types from the OpenAPI schema         |
+
+End-to-end flows (`tests/e2e/flows.spec.ts`) need the backend running with demo data (`make seed`):
+
+```bash
+E2E_SEEDED=1 PLAYWRIGHT_BASE_URL=http://localhost:3000 pnpm test:e2e
+```
+
+| `pnpm gen:api` | Regenerate API types from the OpenAPI schema |
 
 ## Folder structure
 
@@ -85,15 +93,17 @@ messages/                 sk.json, en.json (UI strings, incl. placeholder page t
 src/
   app/[locale]/
     layout.tsx            <html lang>, providers, skip link
-    (public)/             landing, studies, studies/[id], login, register, verify-email, 403
-    (participant)/        sidebar layout + /participant/* pages
-    (researcher)/         sidebar layout + /researcher/* pages
+    (public)/             landing, studies, studies/[id], login, register, verify-email,
+                          forgot-password, reset-password, 403
+    (participant)/        sidebar layout + /participant/* pages (incl. studies/[id], questionnaires/[id])
+    (researcher)/         sidebar layout + /researcher/* pages (studies/[id]/{participants,questionnaires}, settings)
   components/
     ui/                   shadcn/ui components
     layout/               header, footer, sidebar, app shell, placeholder page
     providers.tsx         TanStack Query + toaster
-  features/               auth, consent, studies, questionnaires, profile
-    <feature>/            components/, hooks/, schemas.ts (Zod), api.ts
+  features/               auth, consent, studies, questionnaires, profile, participant, researcher
+    <feature>/            components/, hooks/, schemas.ts (Zod), api.ts (TanStack Query hooks)
+    questionnaires/survey.ts  SurveyJS-compatible subset: parse, serialise, validate answers
   lib/
     api/                  client.ts (openapi-fetch), schema.d.ts (generated), query-keys.ts
     utils.ts              cn()

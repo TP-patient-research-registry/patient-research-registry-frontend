@@ -30,6 +30,11 @@ export default async function proxy(request: NextRequest) {
     return NextResponse.rewrite(new URL(`${pathname}${search}`, API_INTERNAL_URL));
   }
 
+  // Pages: canonical URLs have no trailing slash (see skipTrailingSlashRedirect in next.config.ts).
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return NextResponse.redirect(new URL(`${pathname.replace(/\/+$/, "")}${search}`, request.url), 308);
+  }
+
   const { locale, path } = splitLocale(pathname);
   const requiredRoles = getRequiredRoles(path);
 

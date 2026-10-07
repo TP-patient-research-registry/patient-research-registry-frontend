@@ -1,13 +1,13 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, Page, pageMetadata } from "@/components/layout/page";
+import { FindStudies } from "@/features/participant/components/find-studies";
 
-export const generateMetadata = placeholderMetadata("participantStudies");
+export const generateMetadata = pageMetadata("participantStudies");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function Route({ params }: PageProps<"/[locale]/participant/studies">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="participantStudies" />;
+  return (
+    <Page pageKey="participantStudies" width="max-w-5xl">
+      <FindStudies />
+    </Page>
+  );
 }

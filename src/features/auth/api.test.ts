@@ -6,7 +6,7 @@ describe("parseSession", () => {
   it("returns an authenticated session for a known role", () => {
     expect(parseSession({ user: { id: 1, email: "a@b.sk", role: "researcher" } })).toEqual({
       isAuthenticated: true,
-      user: { id: "1", email: "a@b.sk", role: "researcher" },
+      user: { id: "1", email: "a@b.sk", role: "researcher", firstName: "", lastName: "" },
     });
   });
 

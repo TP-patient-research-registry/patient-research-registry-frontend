@@ -1,13 +1,14 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, Page, pageMetadata } from "@/components/layout/page";
+import { VerifyEmail } from "@/features/auth/components/verify-email";
 
-export const generateMetadata = placeholderMetadata("verifyEmail");
+export const generateMetadata = pageMetadata("verifyEmail");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function VerifyEmailPage({ params, searchParams }: PageProps<"/[locale]/verify-email">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="verifyEmail" />;
+  const { key } = await searchParams;
+  return (
+    <Page pageKey="verifyEmail" width="max-w-xl">
+      <VerifyEmail verificationKey={typeof key === "string" ? key : null} />
+    </Page>
+  );
 }

@@ -1,18 +1,14 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, Page, pageMetadata } from "@/components/layout/page";
 import { LoginForm } from "@/features/auth/components/login-form";
 
-export const generateMetadata = placeholderMetadata("login");
+export const generateMetadata = pageMetadata("login");
 
-export default async function LoginPage({ params }: LocaleParams) {
+export default async function LoginPage({ params, searchParams }: PageProps<"/[locale]/login">) {
   await initLocale(params);
+  const { next } = await searchParams;
   return (
-    <PlaceholderPage pageKey="login">
-      <LoginForm />
-    </PlaceholderPage>
+    <Page pageKey="login" width="max-w-sm">
+      <LoginForm next={typeof next === "string" ? next : null} />
+    </Page>
   );
 }

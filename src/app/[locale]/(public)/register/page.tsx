@@ -1,13 +1,13 @@
-import {
-  initLocale,
-  type LocaleParams,
-  PlaceholderPage,
-  placeholderMetadata,
-} from "@/components/layout/placeholder-page";
+import { initLocale, Page, pageMetadata } from "@/components/layout/page";
+import { RegisterForm } from "@/features/auth/components/register-form";
 
-export const generateMetadata = placeholderMetadata("register");
+export const generateMetadata = pageMetadata("register");
 
-export default async function Page({ params }: LocaleParams) {
+export default async function RegisterPage({ params }: PageProps<"/[locale]/register">) {
   await initLocale(params);
-  return <PlaceholderPage pageKey="register" />;
+  return (
+    <Page pageKey="register" width="max-w-xl">
+      <RegisterForm />
+    </Page>
+  );
 }
